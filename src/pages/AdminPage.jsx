@@ -4,53 +4,53 @@ import { BookingTimerRow, CountdownBadge, ExtendModal, SpotModal, Toast, fmtDate
 
 function StatCard({ label, value, note }) {
   return (
-    <div className="rounded-[26px] border border-[#1a3a5c] bg-[#0f2337] p-5 shadow-sm">
-      <p className="text-[11px] uppercase tracking-[0.22em] text-[#5a7a99]">{label}</p>
-      <p className="mt-3 text-3xl font-semibold text-[#e8edf2]">{value}</p>
-      <p className="mt-1 text-sm text-[#5a7a99]">{note}</p>
+    <div className="rounded-[26px] border border-slate-700/60 bg-slate-900 p-5 shadow-sm">
+      <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">{label}</p>
+      <p className="mt-3 text-3xl font-semibold text-slate-100">{value}</p>
+      <p className="mt-1 text-sm text-slate-500">{note}</p>
     </div>
   );
 }
 
 function CompletedRow({ session }) {
   return (
-    <tr className="border-b border-[#1a3a5c]">
-      <td className="px-4 py-3 text-sm font-semibold text-[#c8d4e0]">{session.license_plate}</td>
-      <td className="px-4 py-3 text-sm text-[#7a9ab8]">{session.spot_number}</td>
-      <td className="px-4 py-3 text-sm text-[#5a7a99]">Zone {session.zone_name}</td>
-      <td className="px-4 py-3 text-sm text-[#5a7a99]">{session.duration_hours}h</td>
-      <td className="px-4 py-3 text-sm text-[#5a7a99]">{fmtDateTime(session.entry_time)}</td>
-      <td className="px-4 py-3 text-sm font-semibold text-[#3dd6f5]">${session.total_amount?.toFixed(2) || '0.00'}</td>
+    <tr className="border-b border-slate-700/60">
+      <td className="px-4 py-3 text-sm font-semibold text-slate-300">{session.license_plate}</td>
+      <td className="px-4 py-3 text-sm text-slate-400">{session.spot_number}</td>
+      <td className="px-4 py-3 text-sm text-slate-500">Zone {session.zone_name}</td>
+      <td className="px-4 py-3 text-sm text-slate-500">{session.duration_hours}h</td>
+      <td className="px-4 py-3 text-sm text-slate-500">{fmtDateTime(session.entry_time)}</td>
+      <td className="px-4 py-3 text-sm font-semibold text-cyan-400">${session.total_amount?.toFixed(2) || '0.00'}</td>
     </tr>
   );
 }
 
 function UserRow({ rowUser, currentUserId, onRoleChange, onDelete }) {
   return (
-    <tr className="border-b border-[#1a3a5c]">
-      <td className="px-4 py-3 text-sm font-semibold text-[#c8d4e0]">{rowUser.full_name}</td>
-      <td className="px-4 py-3 text-sm text-[#5a7a99]">@{rowUser.username}</td>
-      <td className="px-4 py-3 text-sm text-[#5a7a99]">{rowUser.email}</td>
-      <td className="px-4 py-3 text-sm text-[#5a7a99]">{rowUser.phone || '—'}</td>
-      <td className="px-4 py-3 text-sm capitalize text-[#7a9ab8]">{rowUser.role}</td>
+    <tr className="border-b border-slate-700/60">
+      <td className="px-4 py-3 text-sm font-semibold text-slate-300">{rowUser.full_name}</td>
+      <td className="px-4 py-3 text-sm text-slate-500">@{rowUser.username}</td>
+      <td className="px-4 py-3 text-sm text-slate-500">{rowUser.email}</td>
+      <td className="px-4 py-3 text-sm text-slate-500">{rowUser.phone || '—'}</td>
+      <td className="px-4 py-3 text-sm capitalize text-slate-400">{rowUser.role}</td>
       <td className="px-4 py-3">
         {rowUser.id !== currentUserId ? (
           <div className="flex items-center gap-2">
             <select
               value={rowUser.role}
               onChange={(e) => onRoleChange(rowUser.id, e.target.value)}
-              className="rounded-xl border border-[#1a3a5c] bg-[#0f2337] px-3 py-2 text-xs text-[#9db4cc] outline-none"
+              className="rounded-xl border border-slate-700/60 bg-slate-900 px-3 py-2 text-xs text-slate-400 outline-none"
             >
               <option value="customer">Customer</option>
               <option value="staff">Staff</option>
               <option value="admin">Admin</option>
             </select>
-            <button onClick={() => onDelete(rowUser.id)} className="rounded-xl bg-[#0a1f35] px-3 py-2 text-xs font-semibold text-[#ff4d6d]">
+            <button onClick={() => onDelete(rowUser.id)} className="rounded-xl bg-slate-800/40 px-3 py-2 text-xs font-semibold text-red-400">
               Remove
             </button>
           </div>
         ) : (
-          <span className="text-xs text-[#3d5f7a]">Current user</span>
+          <span className="text-xs text-slate-600">Current user</span>
         )}
       </td>
     </tr>
@@ -179,30 +179,30 @@ export default function AdminPage({ user, onLogout }) {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#0d1b2a]">
+      <div className="flex min-h-screen items-center justify-center bg-slate-900">
         <div className="text-center">
-          <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-[#0057ff]/20 border-t-[#7c4f64]" />
-          <p className="mt-4 text-sm uppercase tracking-[0.22em] text-[#5a7a99]">Loading admin panel</p>
+          <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-blue-500/20 border-t-[#7c4f64]" />
+          <p className="mt-4 text-sm uppercase tracking-[0.22em] text-slate-500">Loading admin panel</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#0d1b2a] text-[#e8edf2]">
+    <div className="min-h-screen bg-slate-900 text-slate-100">
       <Toast notif={notif} />
 
-      <header className="sticky top-0 z-40 border-b border-[#1a3a5c] bg-[#0d1b2a]/90 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-slate-700/60 bg-slate-900/90 backdrop-blur">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
           <div>
-            <p className="text-[11px] uppercase tracking-[0.24em] text-[#5a7a99]">Administration</p>
+            <p className="text-[11px] uppercase tracking-[0.24em] text-slate-500">Administration</p>
             <h1 className="text-2xl font-semibold">Smart Parking Control</h1>
           </div>
           <div className="flex items-center gap-3">
-            {criticalCount > 0 && <span className="rounded-full bg-[#0a1a30] px-3 py-1.5 text-xs font-semibold text-[#ff4d6d]">{criticalCount} critical</span>}
-            {warningCount > criticalCount && <span className="rounded-full bg-[#0a2540] px-3 py-1.5 text-xs font-semibold text-[#f0a500]">{warningCount} expiring</span>}
-            <div className="hidden rounded-2xl border border-[#1a3a5c] bg-[#0f2337] px-3 py-2 text-sm text-[#7a9ab8] sm:block">{user.full_name}</div>
-            <button onClick={onLogout} className="rounded-2xl bg-[#1a3a5c] px-4 py-2.5 text-sm font-semibold text-white">Logout</button>
+            {criticalCount > 0 && <span className="rounded-full bg-slate-800/40 px-3 py-1.5 text-xs font-semibold text-red-400">{criticalCount} critical</span>}
+            {warningCount > criticalCount && <span className="rounded-full bg-slate-800/60 px-3 py-1.5 text-xs font-semibold text-amber-400">{warningCount} expiring</span>}
+            <div className="hidden rounded-2xl border border-slate-700/60 bg-slate-900 px-3 py-2 text-sm text-slate-400 sm:block">{user.full_name}</div>
+            <button onClick={onLogout} className="rounded-2xl bg-slate-800 px-4 py-2.5 text-sm font-semibold text-white">Logout</button>
           </div>
         </div>
         <div className="mx-auto flex max-w-7xl gap-2 overflow-x-auto px-4 pb-4 sm:px-6 lg:px-8">
@@ -211,7 +211,7 @@ export default function AdminPage({ user, onLogout }) {
               key={tab.id}
               onClick={() => setActiveTab(tab.id)}
               className={`whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium transition ${
-                activeTab === tab.id ? 'bg-[#0057ff] text-white' : 'bg-[#0f2337] text-[#7a9ab8] border border-[#1a3a5c]'
+                activeTab === tab.id ? 'bg-blue-600 text-white' : 'bg-slate-900 text-slate-400 border border-slate-700/60'
               }`}
             >
               {tab.label}
@@ -231,32 +231,32 @@ export default function AdminPage({ user, onLogout }) {
             </div>
 
             <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.05fr_0.95fr]">
-              <div className="rounded-[28px] border border-[#1a3a5c] bg-[#0f2337] p-6 shadow-sm">
+              <div className="rounded-[28px] border border-slate-700/60 bg-slate-900 p-6 shadow-sm">
                 <div className="mb-4 flex items-center justify-between">
                   <h2 className="text-xl font-semibold">Live occupancy</h2>
-                  <span className="text-sm text-[#5a7a99]">{stats.occupancyRate}% used</span>
+                  <span className="text-sm text-slate-500">{stats.occupancyRate}% used</span>
                 </div>
-                <div className="h-4 rounded-full bg-[#0a2540]">
-                  <div className="h-4 rounded-full bg-[#0057ff]" style={{ width: `${stats.occupancyRate}%` }} />
+                <div className="h-4 rounded-full bg-slate-800/60">
+                  <div className="h-4 rounded-full bg-blue-600" style={{ width: `${stats.occupancyRate}%` }} />
                 </div>
-                <div className="mt-3 flex justify-between text-xs text-[#5a7a99]">
+                <div className="mt-3 flex justify-between text-xs text-slate-500">
                   <span>{stats.availableSpots} free</span>
                   <span>{stats.occupiedSpots} occupied</span>
                   <span>{stats.reservedSpots} reserved</span>
                 </div>
               </div>
 
-              <div className="rounded-[28px] border border-[#1a3a5c] bg-[#0f2337] p-6 shadow-sm">
+              <div className="rounded-[28px] border border-slate-700/60 bg-slate-900 p-6 shadow-sm">
                 <h2 className="text-xl font-semibold">Zone overview</h2>
                 <div className="mt-4 space-y-4">
                   {zones.map((zone) => (
                     <div key={zone.id}>
-                      <div className="mb-1 flex justify-between text-sm text-[#7a9ab8]">
+                      <div className="mb-1 flex justify-between text-sm text-slate-400">
                         <span>Zone {zone.name}</span>
                         <span>{zone.occupied_spots}/{zone.total_spots}</span>
                       </div>
-                      <div className="h-2.5 rounded-full bg-[#0a2540]">
-                        <div className="h-2.5 rounded-full bg-[#1a3a5c]" style={{ width: `${(zone.occupied_spots / zone.total_spots) * 100}%` }} />
+                      <div className="h-2.5 rounded-full bg-slate-800/60">
+                        <div className="h-2.5 rounded-full bg-slate-800" style={{ width: `${(zone.occupied_spots / zone.total_spots) * 100}%` }} />
                       </div>
                     </div>
                   ))}
@@ -264,14 +264,14 @@ export default function AdminPage({ user, onLogout }) {
               </div>
             </div>
 
-            <div className="overflow-hidden rounded-[28px] border border-[#1a3a5c] bg-[#0f2337] shadow-sm">
-              <div className="flex items-center justify-between border-b border-[#1a3a5c] px-6 py-4">
+            <div className="overflow-hidden rounded-[28px] border border-slate-700/60 bg-slate-900 shadow-sm">
+              <div className="flex items-center justify-between border-b border-slate-700/60 px-6 py-4">
                 <h2 className="text-xl font-semibold">Active bookings</h2>
-                <span className="text-sm text-[#5a7a99]">{activeSessions.length} active</span>
+                <span className="text-sm text-slate-500">{activeSessions.length} active</span>
               </div>
               <div className="overflow-x-auto">
                 <table className="w-full min-w-[900px]">
-                  <thead className="bg-[#0d1b2a] text-left text-[11px] uppercase tracking-[0.18em] text-[#5a7a99]">
+                  <thead className="bg-slate-900 text-left text-[11px] uppercase tracking-[0.18em] text-slate-500">
                     <tr>
                       <th className="px-4 py-3">Plate</th>
                       <th className="px-4 py-3">Spot</th>
@@ -298,21 +298,21 @@ export default function AdminPage({ user, onLogout }) {
           <div className="space-y-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-[11px] uppercase tracking-[0.22em] text-[#5a7a99]">Parking map</p>
+                <p className="text-[11px] uppercase tracking-[0.22em] text-slate-500">Parking map</p>
                 <h2 className="text-2xl font-semibold">Zone-wise slot layout</h2>
               </div>
-              <button onClick={fetchData} className="rounded-2xl border border-[#1a3a5c] bg-[#0f2337] px-4 py-2.5 text-sm font-medium text-[#9db4cc]">Refresh</button>
+              <button onClick={fetchData} className="rounded-2xl border border-slate-700/60 bg-slate-900 px-4 py-2.5 text-sm font-medium text-slate-400">Refresh</button>
             </div>
 
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
               {zones.map((zone) => (
-                <div key={zone.id} className="rounded-[28px] border border-[#1a3a5c] bg-[#0f2337] p-5 shadow-sm">
+                <div key={zone.id} className="rounded-[28px] border border-slate-700/60 bg-slate-900 p-5 shadow-sm">
                   <div className="mb-4 flex items-start justify-between">
                     <div>
                       <h3 className="text-lg font-semibold">Zone {zone.name}</h3>
-                      <p className="text-sm text-[#5a7a99]">{zone.available_spots} free of {zone.total_spots}</p>
+                      <p className="text-sm text-slate-500">{zone.available_spots} free of {zone.total_spots}</p>
                     </div>
-                    <span className="text-sm text-[#5a7a99]">{Math.round((zone.occupied_spots / zone.total_spots) * 100)}%</span>
+                    <span className="text-sm text-slate-500">{Math.round((zone.occupied_spots / zone.total_spots) * 100)}%</span>
                   </div>
                   <div className="grid grid-cols-3 gap-2">
                     {spots.filter((spot) => spot.zone_id === zone.id).map((spot) => (
@@ -333,14 +333,14 @@ export default function AdminPage({ user, onLogout }) {
         )}
 
         {activeTab === 'bookings' && (
-          <div className="overflow-hidden rounded-[28px] border border-[#1a3a5c] bg-[#0f2337] shadow-sm">
-            <div className="flex items-center justify-between border-b border-[#1a3a5c] px-6 py-4">
+          <div className="overflow-hidden rounded-[28px] border border-slate-700/60 bg-slate-900 shadow-sm">
+            <div className="flex items-center justify-between border-b border-slate-700/60 px-6 py-4">
               <h2 className="text-xl font-semibold">All active bookings</h2>
-              <span className="text-sm text-[#5a7a99]">Live session table</span>
+              <span className="text-sm text-slate-500">Live session table</span>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full min-w-[900px]">
-                <thead className="bg-[#0d1b2a] text-left text-[11px] uppercase tracking-[0.18em] text-[#5a7a99]">
+                <thead className="bg-slate-900 text-left text-[11px] uppercase tracking-[0.18em] text-slate-500">
                   <tr>
                     <th className="px-4 py-3">Plate</th>
                     <th className="px-4 py-3">Spot</th>
@@ -363,14 +363,14 @@ export default function AdminPage({ user, onLogout }) {
         )}
 
         {activeTab === 'history' && (
-          <div className="overflow-hidden rounded-[28px] border border-[#1a3a5c] bg-[#0f2337] shadow-sm">
-            <div className="border-b border-[#1a3a5c] px-6 py-4">
+          <div className="overflow-hidden rounded-[28px] border border-slate-700/60 bg-slate-900 shadow-sm">
+            <div className="border-b border-slate-700/60 px-6 py-4">
               <h2 className="text-xl font-semibold">Completed sessions</h2>
-              <p className="mt-1 text-sm text-[#5a7a99]">{completedSessions.length} records</p>
+              <p className="mt-1 text-sm text-slate-500">{completedSessions.length} records</p>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full min-w-[760px]">
-                <thead className="bg-[#0d1b2a] text-left text-[11px] uppercase tracking-[0.18em] text-[#5a7a99]">
+                <thead className="bg-slate-900 text-left text-[11px] uppercase tracking-[0.18em] text-slate-500">
                   <tr>
                     <th className="px-4 py-3">Plate</th>
                     <th className="px-4 py-3">Spot</th>
@@ -391,14 +391,14 @@ export default function AdminPage({ user, onLogout }) {
         )}
 
         {activeTab === 'users' && (
-          <div className="overflow-hidden rounded-[28px] border border-[#1a3a5c] bg-[#0f2337] shadow-sm">
-            <div className="border-b border-[#1a3a5c] px-6 py-4">
+          <div className="overflow-hidden rounded-[28px] border border-slate-700/60 bg-slate-900 shadow-sm">
+            <div className="border-b border-slate-700/60 px-6 py-4">
               <h2 className="text-xl font-semibold">User management</h2>
-              <p className="mt-1 text-sm text-[#5a7a99]">Update roles or remove accounts</p>
+              <p className="mt-1 text-sm text-slate-500">Update roles or remove accounts</p>
             </div>
             <div className="overflow-x-auto">
               <table className="w-full min-w-[840px]">
-                <thead className="bg-[#0d1b2a] text-left text-[11px] uppercase tracking-[0.18em] text-[#5a7a99]">
+                <thead className="bg-slate-900 text-left text-[11px] uppercase tracking-[0.18em] text-slate-500">
                   <tr>
                     <th className="px-4 py-3">Name</th>
                     <th className="px-4 py-3">Username</th>
@@ -420,24 +420,24 @@ export default function AdminPage({ user, onLogout }) {
 
         {activeTab === 'analytics' && stats && (
           <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-            <div className="rounded-[28px] border border-[#1a3a5c] bg-[#0f2337] p-6 shadow-sm">
+            <div className="rounded-[28px] border border-slate-700/60 bg-slate-900 p-6 shadow-sm">
               <h2 className="text-xl font-semibold">Occupancy snapshot</h2>
               <div className="mt-6 flex items-center justify-center">
-                <div className="grid h-52 w-52 place-items-center rounded-full border-[18px] border-[#1a3a5c] text-center" style={{ boxShadow: `inset 0 0 0 18px rgba(124,79,100,${stats.occupancyRate / 170})` }}>
+                <div className="grid h-52 w-52 place-items-center rounded-full border-[18px] border-slate-700/60 text-center" style={{ boxShadow: `inset 0 0 0 18px rgba(124,79,100,${stats.occupancyRate / 170})` }}>
                   <div>
                     <p className="text-4xl font-semibold">{stats.occupancyRate}%</p>
-                    <p className="text-sm text-[#5a7a99]">Occupied</p>
+                    <p className="text-sm text-slate-500">Occupied</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="rounded-[28px] border border-[#1a3a5c] bg-[#0f2337] p-6 shadow-sm">
+            <div className="rounded-[28px] border border-slate-700/60 bg-slate-900 p-6 shadow-sm">
               <h2 className="text-xl font-semibold">Revenue summary</h2>
               <div className="mt-5 space-y-3 text-sm">
-                <div className="flex justify-between rounded-2xl bg-[#0a2540] px-4 py-4"><span className="text-[#7a9ab8]">Completed sessions</span><span className="font-semibold">${completedSessions.reduce((sum, s) => sum + (s.total_amount || 0), 0).toFixed(2)}</span></div>
-                <div className="flex justify-between rounded-2xl bg-[#0a2540] px-4 py-4"><span className="text-[#7a9ab8]">Active session estimate</span><span className="font-semibold">${activeSessions.reduce((sum, s) => sum + s.duration_hours * 5, 0).toFixed(2)}</span></div>
-                <div className="flex justify-between rounded-2xl bg-[#0a1f35] px-4 py-4"><span className="text-[#9db4cc]">Total</span><span className="font-semibold text-[#4d9fff]">${stats.todayRevenue.toFixed(2)}</span></div>
+                <div className="flex justify-between rounded-2xl bg-slate-800/60 px-4 py-4"><span className="text-slate-400">Completed sessions</span><span className="font-semibold">${completedSessions.reduce((sum, s) => sum + (s.total_amount || 0), 0).toFixed(2)}</span></div>
+                <div className="flex justify-between rounded-2xl bg-slate-800/60 px-4 py-4"><span className="text-slate-400">Active session estimate</span><span className="font-semibold">${activeSessions.reduce((sum, s) => sum + s.duration_hours * 5, 0).toFixed(2)}</span></div>
+                <div className="flex justify-between rounded-2xl bg-slate-800/40 px-4 py-4"><span className="text-slate-400">Total</span><span className="font-semibold text-blue-400">${stats.todayRevenue.toFixed(2)}</span></div>
               </div>
             </div>
           </div>
