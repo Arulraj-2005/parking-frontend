@@ -12,8 +12,8 @@ html {
 body {
   margin: 0;
   min-width: 320px;
-  background: #f6f1ea;
-  color: #1f1b18;
+  background: #0d1b2a;
+  color: #e8edf2;
 }
 
 * {
@@ -27,5 +27,5 @@ select {
 }
 
 ::selection {
-  background: rgba(124, 79, 100, 0.2);
+  background: rgba(0, 122, 255, 0.3);
 }
